@@ -30,6 +30,9 @@ exports.getMovies = (req, res) => {
 
 exports.createMovie = (req, res) => {
     let url = `${api}${req.body.title}`;
+    req.setTimeout(4000, ()=> {
+        res.send(503)
+    });
     
     if(!req.body.title) {
         res.send(`Missing argument 'title'. Make sure to post it in request body`);
