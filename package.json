@@ -1,0 +1,28 @@
+{
+  "name": "movie_database_api",
+  "version": "1.0.0",
+  "description": "restful api app created as netguru recruitment task",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "es6-promise": "^4.2.4",
+    "express": "^4.16.3",
+    "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^5.1.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmicalt/movie_database_api.git"
+  },
+  "author": "michal burdzy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmicalt/movie_database_api/issues"
+  },
+  "homepage": "https://github.com/mmicalt/movie_database_api#readme"
+}
