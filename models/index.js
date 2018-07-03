@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.DATABASEURL);
-// mongoose.connect('mongodb://mmicalt:Roka1991@ds125241.mlab.com:25241/movies_api_database')
+const url = process.env.DATABASEURL || 'mongodb://localhost/movies';
+mongoose.connect(url);
 
 mongoose.Promise = Promise;
 mongoose.set('debug', 'true');
