@@ -1,4 +1,4 @@
-RESTful movie database API. 
+# RESTful movie database API. 
 See it in action: https://mmicalt-movie-database-api.herokuapp.com/
 
 App server is running on Heroku and database is provided by mLab.
