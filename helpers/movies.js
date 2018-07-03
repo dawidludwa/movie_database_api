@@ -52,6 +52,8 @@ exports.createMovie = (req, res) => {
                             res.json(newMovie)
                         })
                 })
+        }, (request)=> {
+                        res.send('Sorry, there is no such movie in OMDB database. Try another one.')
         })
 
 }
