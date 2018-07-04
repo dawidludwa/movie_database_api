@@ -20,7 +20,9 @@ exports.getMovies = (req, res) => {
     db.movie.find()
         .then(data => {
             if(data.length === 0) {
-                res.send('Sorry, no movies in our database. Post new movie to add it.')
+                res.json({
+                    Error: 'No such movies in database. Try to add one'
+                })
             }
             res.json(data);
         }, (data) => {
@@ -29,36 +31,40 @@ exports.getMovies = (req, res) => {
 }
 
 exports.createMovie = (req, res) => {
-    let url = `${api}${req.body.title}`;
+    if(!req.body.Title) {
+        res.json({Error: 'No movie title provided'});
+        res.end()
+    } else {
+    
+    let url = `${api}${req.body.Title}`;
+    console.log('URL: ' + url)
     req.setTimeout(4000, ()=> {
         res.send(503)
     });
-    
-    if(!req.body.title) {
-        res.send(`Missing argument 'title'. Make sure to post it in request body`);
-
-    }
     
     fetch(url)
         .then(request => {
             if(!request.ok) {
                 throw Error(request.status);
             }
-
             request.json()
                 .then(data => {
-                    if(data.Response === 'False') {
-                        res.send('Sorry, there is no such movie in OMDB database. Try another one.')
+                    if(data.Response === 'False' || data.Error || data.Title === undefined) {
+                        res.json(data);
+                        res.end();
                     }
                     db.movie.create(data)
                         .then(newMovie => {
                             res.json(newMovie)
                         })
+                        .catch(err => {
+                            throw Error(err)
+                        })
                 })
         }, (request)=> {
-                        res.send('Sorry, there is no such movie in OMDB database. Try another one.')
+                        res.json({Error: 'Sorry, there is no such movie in OMDB database. Try another one.'})
         })
-
+    }
 }
 
 
